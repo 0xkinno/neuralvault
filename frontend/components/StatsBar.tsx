@@ -57,12 +57,11 @@ export default function StatsBar({ stats }: StatsBarProps) {
         }}>
           <span style={{ fontSize: 10, color: "var(--grey)", fontFamily: "IBM Plex Mono" }}>Contract</span>
           
-          <a href="https://chainscan-galileo.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF"
-            target="_blank" rel="noreferrer"
+          <a href="https://chainscan-galileo.0g.ai/address/0x7047D67Ef69F40F9340Fd97EDF79276458238cfe"
             className="addr"
             style={{ color: "var(--accent-bright)", textDecoration: "none", fontSize: 11 }}
           >
-            0x9D0E...1EdF ↗
+            0x7047...8cfe ↗
           </a>
         </div>
       </div>
