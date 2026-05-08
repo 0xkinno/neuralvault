@@ -1,0 +1,25 @@
+export const NEURAL_VAULT_ADDRESS = "0x7047D67Ef69F40F9340Fd97EDF79276458238cfe";
+
+export const NEURAL_VAULT_ABI = [
+  "function registerAgent(string name, string agentType, string metadataHash) external",
+  "function updateAgent(string metadataHash) external",
+  "function deleteAgent() external",
+  "function reactivateAgent() external",
+  "function deactivateAgent() external",
+  "function isRegistered(address) external view returns (bool)",
+  "function getAgent(address wallet) external view returns (tuple(string name, string agentType, string metadataHash, address wallet, uint256 reputation, uint256 tasksCompleted, uint256 totalEarned, uint256 registeredAt, bool active))",
+  "function getAllAgents() external view returns (address[])",
+  "function storeMemory(string rootHash, string memoryType, string description, uint256 size) external",
+  "function getMemories(address agent) external view returns (tuple(string rootHash, string memoryType, string description, uint256 timestamp, uint256 size)[])",
+  "function memoryCount(address) external view returns (uint256)",
+  "function postTask(string title, string description) external payable",
+  "function claimTask(uint256 taskId) external",
+  "function completeTask(uint256 taskId, string resultHash) external",
+  "function cancelTask(uint256 taskId) external",
+  "function getTask(uint256 taskId) external view returns (tuple(uint256 id, address poster, address assignee, string title, string description, string resultHash, uint256 reward, uint8 status, uint256 createdAt, uint256 completedAt))",
+  "function getAgentTasks(address agent) external view returns (uint256[])",
+  "function taskCount() external view returns (uint256)",
+  "function payAgent(address payable recipient) external payable",
+  "function getVaultStats() external view returns (uint256, uint256, uint256, uint256)",
+  "function boostReputation(address agent, uint256 points) external",
+];
