@@ -137,7 +137,7 @@ function Landing({ onConnect, connecting }: { onConnect: () => void; connecting:
       <div className="badge badge-blue" style={{ marginBottom: 24, fontSize: 11 }}>
   <div className="pulse-dot" style={{ width: 6, height: 6 }} />
   <span style={{ fontFamily: "IBM Plex Mono", fontVariantNumeric: "slashed-zero", letterSpacing: "0.08em" }}>
-    BUILT ON 0G CHAIN · TESTNET LIVE
+  BUILT ON 0G CHAIN · MAINNET LIVE
   </span>
 </div>
         <h1 className="font-display" style={{ fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 800, lineHeight: 1.08, color: "var(--white)", marginBottom: 20 }}>
@@ -151,7 +151,7 @@ function Landing({ onConnect, connecting }: { onConnect: () => void; connecting:
           <button onClick={onConnect} disabled={connecting} className="btn btn-blue btn-lg">
             {connecting ? <><span className="spin" />Connecting...</> : "Launch Dashboard →"}
           </button>
-          <a href="https://chainscan-galileo.0g.ai/address/0x7047D67Ef69F40F9340Fd97EDF79276458238cfe" target="_blank" rel="noreferrer" className="btn btn-ghost btn-lg">
+          <a href="https://chainscan-galileo.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF" target="_blank" rel="noreferrer" className="btn btn-ghost btn-lg">
             View Contract ↗
           </a>
         </div>
@@ -178,7 +178,7 @@ function Landing({ onConnect, connecting }: { onConnect: () => void; connecting:
       <div className="card" style={{ padding: "20px 28px", display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center", justifyContent: "space-between" }}>
         <div>
           <div className="font-display" style={{ fontSize: 13, fontWeight: 700, color: "var(--white)", marginBottom: 4 }}>Deployed on 0G Testnet</div>
-          <div className="addr">0x7047D67Ef69F40F9340Fd97EDF79276458238cfe</div>
+          <div className="addr">0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF</div>
         </div>
         <div className="flex gap-6 flex-wrap">
           {["0G Storage", "0G Compute", "0G Chain", "Agent ID"].map(t => (
