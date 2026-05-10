@@ -8,12 +8,13 @@
 | | |
 |---|---|
 | **Live Demo** | https://neuralvault-kohl.vercel.app |
-| **Contract** | `0x7047D67Ef69F40F9340Fd97EDF79276458238cfe` |
-| **0G Explorer** | [View Contract](https://chainscan-galileo.0g.ai/address/0x7047D67Ef69F40F9340Fd97EDF79276458238cfe) |
+| **Mainnet Contract** | `0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF` |
+| **Mainnet Explorer** | [View Contract](https://chainscan.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF) |
+| **Testnet Contract** | `0x7047D67Ef69F40F9340Fd97EDF79276458238cfe` |
+| **Testnet Explorer** | [View Contract](https://chainscan-galileo.0g.ai/address/0x7047D67Ef69F40F9340Fd97EDF79276458238cfe) |
 | **GitHub** | https://github.com/0xkinno/neuralvault |
 | **Demo Video** | https://www.youtube.com/watch?v=zUP398f-Khk |
-| **Network** | 0G Galileo Testnet · Chain ID 16602 |
-| **Note** | Deployed on Galileo Testnet. Mainnet deployment available on request. |
+| **Network** | 0G Mainnet · Chain ID 16661 |
 
 ---
 
@@ -68,8 +69,8 @@ NeuralVault implements a custom Agent ID standard:
 
 **File:** `contracts/NeuralVault.sol`  
 **Compiler:** Solidity 0.8.24  
-**Address:** `0x7047D67Ef69F40F9340Fd97EDF79276458238cfe`
-
+**Address (Mainnet):** `0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF`  
+**Address (Testnet):** `0x7047D67Ef69F40F9340Fd97EDF79276458238cfe`
 ### Core Functions
 
 ```solidity
@@ -159,7 +160,7 @@ NeuralVault.sol (0G Chain)
 | Frontend | Next.js 16, TypeScript, Tailwind CSS |
 | Web3 | ethers.js v6, MetaMask |
 | Storage | 0G Storage (root hash anchoring) |
-| Chain | 0G Galileo Testnet |
+| Chain | 0G Mainnet + Galileo Testnet |
 | Fonts | Syne, IBM Plex Mono |
 
 ---
@@ -209,7 +210,17 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000)
 
-### 6. Add 0G Testnet to MetaMask
+### 6. Add 0G Mainnet to MetaMask
+
+| Field | Value |
+|---|---|
+| Network Name | 0G Mainnet |
+| RPC URL | https://evmrpc.0g.ai |
+| Chain ID | 16661 |
+| Symbol | OG |
+| Explorer | https://chainscan.0g.ai |
+
+### 7. Add 0G Testnet to MetaMask
 
 | Field | Value |
 |---|---|
