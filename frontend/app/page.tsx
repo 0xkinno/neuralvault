@@ -134,12 +134,12 @@ function Landing({ onConnect, connecting }: { onConnect: () => void; connecting:
     <div style={{ maxWidth: 960, margin: "0 auto", padding: "80px 24px 60px" }}>
       {/* Hero */}
       <div style={{ textAlign: "center", marginBottom: 72 }}>
-      <div className="badge badge-blue" style={{ marginBottom: 24, fontSize: 11 }}>
-  <div className="pulse-dot" style={{ width: 6, height: 6 }} />
-  <span style={{ fontFamily: "IBM Plex Mono", fontVariantNumeric: "slashed-zero", letterSpacing: "0.08em" }}>
-  BUILT ON 0G CHAIN · MAINNET LIVE
-  </span>
-</div>
+        <div className="badge badge-blue" style={{ marginBottom: 24, fontSize: 11 }}>
+          <div className="pulse-dot" style={{ width: 6, height: 6 }} />
+          <span style={{ fontFamily: "IBM Plex Mono", fontVariantNumeric: "slashed-zero", letterSpacing: "0.08em" }}>
+            BUILT ON 0G CHAIN · MAINNET LIVE
+          </span>
+        </div>
         <h1 className="font-display" style={{ fontSize: "clamp(40px, 7vw, 72px)", fontWeight: 800, lineHeight: 1.08, color: "var(--white)", marginBottom: 20 }}>
           The Command Center<br />
           <span style={{ color: "var(--accent)" }} className="text-glow">for AI Agents</span>
@@ -151,7 +151,13 @@ function Landing({ onConnect, connecting }: { onConnect: () => void; connecting:
           <button onClick={onConnect} disabled={connecting} className="btn btn-blue btn-lg">
             {connecting ? <><span className="spin" />Connecting...</> : "Launch Dashboard →"}
           </button>
-          <a href="https://chainscan-galileo.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF" target="_blank" rel="noreferrer" className="btn btn-ghost btn-lg">
+          {/* ✅ Fixed: mainnet explorer */}
+          <a
+            href={`https://chainscan.0g.ai/address/${NEURAL_VAULT_ADDRESS}`}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-ghost btn-lg"
+          >
             View Contract ↗
           </a>
         </div>
@@ -174,15 +180,15 @@ function Landing({ onConnect, connecting }: { onConnect: () => void; connecting:
         ))}
       </div>
 
-      {/* Bottom info strip */}
+      {/* Bottom info strip — ✅ Fixed: 0G not oG */}
       <div className="card" style={{ padding: "20px 28px", display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center", justifyContent: "space-between" }}>
         <div>
-          <div className="font-display" style={{ fontSize: 13, fontWeight: 700, color: "var(--white)", marginBottom: 4 }}>Deployed on 0G Testnet</div>
-          <div className="addr">0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: "var(--white)", marginBottom: 4, fontFamily: "IBM Plex Mono, monospace", letterSpacing: "0.04em" }}>Deployed on 0G Mainnet</div>
+          <div className="addr">{NEURAL_VAULT_ADDRESS}</div>
         </div>
         <div className="flex gap-6 flex-wrap">
           {["0G Storage", "0G Compute", "0G Chain", "Agent ID"].map(t => (
-            <div key={t} className="badge badge-blue" style={{ fontSize: 11 }}>{t}</div>
+            <div key={t} className="badge badge-blue" style={{ fontSize: 11, fontFamily: "IBM Plex Mono, monospace", letterSpacing: "0.06em" }}>{t}</div>
           ))}
         </div>
       </div>
