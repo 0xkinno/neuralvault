@@ -1,4 +1,4 @@
-export const NEURAL_VAULT_ADDRESS = "0x7047D67Ef69F40F9340Fd97EDF79276458238cfe";
+export const NEURAL_VAULT_ADDRESS = "0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF";
 
 export const NEURAL_VAULT_ABI = [
   "function registerAgent(string name, string agentType, string metadataHash) external",

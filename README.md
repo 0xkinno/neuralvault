@@ -11,8 +11,9 @@
 | **Contract** | `0x7047D67Ef69F40F9340Fd97EDF79276458238cfe` |
 | **0G Explorer** | [View Contract](https://chainscan-galileo.0g.ai/address/0x7047D67Ef69F40F9340Fd97EDF79276458238cfe) |
 | **GitHub** | https://github.com/0xkinno/neuralvault |
-| **Demo Video** | *(add YouTube link here)* |
+| **Demo Video** | https://www.youtube.com/watch?v=zUP398f-Khk |
 | **Network** | 0G Galileo Testnet · Chain ID 16602 |
+| **Note** | Deployed on Galileo Testnet. Mainnet deployment available on request. |
 
 ---
 

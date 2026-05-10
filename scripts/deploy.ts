@@ -5,9 +5,9 @@ import { join } from "path";
 async function main() {
   console.log("Deploying NeuralVault to 0G Testnet...");
 
-  const provider = new ethers.JsonRpcProvider("https://evmrpc-testnet.0g.ai", {
-    chainId: 16602,
-    name: "0g-testnet"
+  const provider = new ethers.JsonRpcProvider("https://evmrpc.0g.ai", {
+    chainId: 16661,
+    name: "0g-mainnet"
   }, {
     staticNetwork: true,
     polling: true,

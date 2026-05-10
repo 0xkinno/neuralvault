@@ -10,7 +10,7 @@ import TaskPanel from "@/components/TaskPanel";
 import PaymentPanel from "@/components/PaymentPanel";
 import { NEURAL_VAULT_ADDRESS, NEURAL_VAULT_ABI } from "@/lib/contract";
 
-const CHAIN_ID = 16602;
+const CHAIN_ID = 16661;
 
 export default function Home() {
   const [wallet, setWallet] = useState<string | null>(null);
@@ -34,10 +34,10 @@ export default function Home() {
         } catch {
           await prov.send("wallet_addEthereumChain", [{
             chainId: "0x" + CHAIN_ID.toString(16),
-            chainName: "0G Galileo Testnet",
-            rpcUrls: ["https://evmrpc-testnet.0g.ai"],
+            chainName: "0G Mainnet",
+            rpcUrls: ["https://evmrpc.0g.ai"],
             nativeCurrency: { name: "0G", symbol: "OG", decimals: 18 },
-            blockExplorerUrls: ["https://chainscan-galileo.0g.ai"],
+            blockExplorerUrls: ["https://chainscan.0g.ai"],
           }]);
         }
       }
