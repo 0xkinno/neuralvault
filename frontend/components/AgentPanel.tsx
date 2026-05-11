@@ -143,7 +143,7 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
             ].map(s => (
               <div key={s.label} className="stat">
                 <div style={{ fontSize: 11, color: "var(--grey)", marginBottom: 4, fontFamily: "IBM Plex Mono" }}>{s.label}</div>
-                <div className="font-display" style={{ fontSize: 18, fontWeight: 800, color: "var(--white)" }}>{s.value}</div>
+                <div style={{ fontSize: 18, fontWeight: 800, color: "var(--white)", fontFamily: "IBM Plex Mono, monospace" }}>{s.value}</div>
               </div>
             ))}
           </div>

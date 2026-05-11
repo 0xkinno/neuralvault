@@ -14,7 +14,7 @@ export default function StatsBar({ stats }: StatsBarProps) {
     { label: "Agents", value: stats.totalAgents, icon: "⬡", color: "var(--accent-bright)" },
     { label: "Tasks", value: stats.taskCount, icon: "◎", color: "var(--teal)" },
     { label: "Memories", value: stats.totalMemoryEntries, icon: "◈", color: "var(--purple)" },
-    { label: "Rewards Paid", value: stats.totalRewardsDistributed + " OG", icon: "◆", color: "var(--amber)" },
+    { label: "Rewards Paid", value: stats.totalRewardsDistributed + " 0G", icon: "◆", color: "var(--amber)" },
   ];
 
   return (
@@ -36,9 +36,10 @@ export default function StatsBar({ stats }: StatsBarProps) {
           }}>
             <span style={{ fontSize: 16, color: item.color }}>{item.icon}</span>
             <div>
-              <div className="font-display" style={{
+              <div style={{
                 fontSize: 18, fontWeight: 800,
                 color: item.color, lineHeight: 1,
+                fontFamily: "IBM Plex Mono, monospace", // ✅ prevents 0 → o
               }}>{item.value}</div>
               <div style={{
                 fontSize: 10, color: "var(--grey)",
@@ -56,13 +57,13 @@ export default function StatsBar({ stats }: StatsBarProps) {
           borderLeft: "1px solid var(--border)",
         }}>
           <span style={{ fontSize: 10, color: "var(--grey)", fontFamily: "IBM Plex Mono" }}>Contract</span>
-          
-          <a href="https://chainscan.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF"
-  className="addr"
-  style={{ color: "var(--accent-bright)", textDecoration: "none", fontSize: 11 }}
->
-  0x9D0E...1EdF ↗
-</a>
+          <a
+            href="https://chainscan.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF"
+            className="addr"
+            style={{ color: "var(--accent-bright)", textDecoration: "none", fontSize: 11, fontFamily: "IBM Plex Mono, monospace" }}
+          >
+            0x9D0E...1EdF ↗
+          </a>
         </div>
       </div>
     </div>
