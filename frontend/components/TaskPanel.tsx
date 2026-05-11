@@ -139,7 +139,7 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
             <div>{label({}, "Task Title *")}<input className="input" placeholder="e.g. Analyze DeFi market data" value={title} onChange={e => setTitle(e.target.value)} style={inputStyle} /></div>
             <div>{label({}, "Description")}<textarea className="input" placeholder="Describe the task requirements..." value={description} onChange={e => setDescription(e.target.value)} rows={3} style={inputStyle} /></div>
-            <div>{label({}, "Reward (OG) *")}<input className="input" type="number" placeholder="0.01" step="0.001" value={reward} onChange={e => setReward(e.target.value)} style={inputStyle} /></div>
+            <div>{label({}, "Reward (0G) *")}<input className="input" type="number" placeholder="0.01" step="0.001" value={reward} onChange={e => setReward(e.target.value)} style={inputStyle} /></div>
             <button className="btn btn-blue btn-lg" onClick={postTask} disabled={loading || !title || !reward} style={{ width: "100%" }}>
               {loading ? <><span className="spin" />Posting...</> : "Post Task & Lock Reward →"}
             </button>
@@ -223,8 +223,8 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
 
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid #1a3050" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                    <span style={{ fontSize: 15, fontWeight: 800, color: "#f59e0b", fontFamily: "Syne, sans-serif" }}>
-                      {ethers.formatEther(task.reward || 0)} OG
+                    <span style={{ fontSize: 15, fontWeight: 800, color: "#f59e0b", fontFamily: "IBM Plex Mono, monospace" }}>
+                      {ethers.formatEther(task.reward || 0)} 0G
                     </span>
                     <span style={{ fontSize: 11, color: "#4a6080", fontFamily: "IBM Plex Mono, monospace" }}>
                       {task.poster?.slice(0, 6)}...{task.poster?.slice(-4)}
