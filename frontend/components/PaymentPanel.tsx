@@ -84,9 +84,9 @@ export default function PaymentPanel({ contract, wallet, isRegistered, onRefresh
               className="btn btn-blue btn-lg"
               onClick={sendPayment}
               disabled={loading || !recipient || !amount}
-              style={{ width: "100%", marginTop: 8 }}
+              style={{ width: "100%", marginTop: 8, fontFamily: "IBM Plex Mono, monospace" }}
             >
-              {loading ? <><span className="spin" />Sending...</> : "Send OG Payment →"}
+              {loading ? <><span className="spin" />Sending...</> : "Send 0G Payment →"}
             </button>
           </div>
 
@@ -94,7 +94,7 @@ export default function PaymentPanel({ contract, wallet, isRegistered, onRefresh
           {txHash && (
             <div className="tx-hash">
               ✓ TX: <a
-                href={`https://chainscan-galileo.0g.ai/tx/${txHash}`}
+                href={`https://chainscan.0g.ai/tx/${txHash}`}
                 target="_blank"
                 rel="noreferrer"
                 style={{ color: "var(--teal)" }}
@@ -140,12 +140,13 @@ export default function PaymentPanel({ contract, wallet, isRegistered, onRefresh
             YOUR WALLET
           </div>
           <div className="addr" style={{ marginBottom: 8 }}>{wallet}</div>
+          {/* ✅ Fixed: mainnet explorer + IBM Plex Mono so 0G renders correctly */}
           <a
-            href={`https://chainscan-galileo.0g.ai/address/${wallet}`}
+            href={`https://chainscan.0g.ai/address/${wallet}`}
             target="_blank"
             rel="noreferrer"
             className="btn btn-ghost btn-sm"
-            style={{ textDecoration: "none", display: "inline-flex" }}
+            style={{ textDecoration: "none", display: "inline-flex", fontFamily: "IBM Plex Mono, monospace" }}
           >
             View on 0G Explorer ↗
           </a>

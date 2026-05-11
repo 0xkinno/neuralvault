@@ -16,12 +16,7 @@ const STATUS_BG = ["rgba(45,212,191,0.08)", "rgba(245,158,11,0.08)", "rgba(16,18
 const STATUS_BORDER = ["rgba(45,212,191,0.25)", "rgba(245,158,11,0.25)", "rgba(16,185,129,0.25)", "rgba(244,63,94,0.25)"];
 
 const label = (style: object, children: React.ReactNode) => (
-  <div style={{
-    fontSize: 11, fontWeight: 600, color: "#8aa8c8",
-    fontFamily: "IBM Plex Mono, monospace",
-    letterSpacing: "0.08em", textTransform: "uppercase" as const,
-    marginBottom: 7, ...style
-  }}>{children}</div>
+  <div style={{ fontSize: 11, fontWeight: 600, color: "#8aa8c8", fontFamily: "IBM Plex Mono, monospace", letterSpacing: "0.08em", textTransform: "uppercase" as const, marginBottom: 7, ...style }}>{children}</div>
 );
 
 export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }: Props) {
@@ -119,6 +114,7 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
   }
 
   const filteredTasks = filter === "all" ? tasks : tasks.filter(t => STATUS_LABELS[t.status] === filter);
+  const inputStyle = { background: "#0a1628", borderColor: "#1e3a5f", color: "#e8f0fe" };
 
   if (!isRegistered) {
     return (
@@ -130,39 +126,20 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
     );
   }
 
-  const inputStyle = { background: "#0a1628", borderColor: "#1e3a5f", color: "#e8f0fe" };
-
   return (
     <div style={{ display: "grid", gridTemplateColumns: "380px 1fr", gap: 24 }}>
       {/* Left: Post task form */}
       <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-        <div style={{
-          background: "#0d1b2e",
-          border: "1px solid #1e3a5f",
-          borderRadius: 14, padding: 24,
-        }}>
+        <div style={{ background: "#0d1b2e", border: "1px solid #1e3a5f", borderRadius: 14, padding: 24 }}>
           <div style={{ marginBottom: 20 }}>
-            <div style={{ fontSize: 16, fontWeight: 700, color: "#e8f0fe", fontFamily: "Syne, sans-serif", marginBottom: 4 }}>
-              Post a Task
-            </div>
-            <div style={{ fontSize: 12, color: "#6b8aad", fontFamily: "IBM Plex Mono, monospace" }}>
-              Reward locked in contract until completion
-            </div>
+            <div style={{ fontSize: 16, fontWeight: 700, color: "#e8f0fe", fontFamily: "Syne, sans-serif", marginBottom: 4 }}>Post a Task</div>
+            <div style={{ fontSize: 12, color: "#6b8aad", fontFamily: "IBM Plex Mono, monospace" }}>Reward locked in contract until completion</div>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div>
-              {label({}, "Task Title *")}
-              <input className="input" placeholder="e.g. Analyze DeFi market data" value={title} onChange={e => setTitle(e.target.value)} style={inputStyle} />
-            </div>
-            <div>
-              {label({}, "Description")}
-              <textarea className="input" placeholder="Describe the task requirements..." value={description} onChange={e => setDescription(e.target.value)} rows={3} style={inputStyle} />
-            </div>
-            <div>
-              {label({}, "Reward (OG) *")}
-              <input className="input" type="number" placeholder="0.01" step="0.001" value={reward} onChange={e => setReward(e.target.value)} style={inputStyle} />
-            </div>
+            <div>{label({}, "Task Title *")}<input className="input" placeholder="e.g. Analyze DeFi market data" value={title} onChange={e => setTitle(e.target.value)} style={inputStyle} /></div>
+            <div>{label({}, "Description")}<textarea className="input" placeholder="Describe the task requirements..." value={description} onChange={e => setDescription(e.target.value)} rows={3} style={inputStyle} /></div>
+            <div>{label({}, "Reward (OG) *")}<input className="input" type="number" placeholder="0.01" step="0.001" value={reward} onChange={e => setReward(e.target.value)} style={inputStyle} /></div>
             <button className="btn btn-blue btn-lg" onClick={postTask} disabled={loading || !title || !reward} style={{ width: "100%" }}>
               {loading ? <><span className="spin" />Posting...</> : "Post Task & Lock Reward →"}
             </button>
@@ -171,7 +148,12 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
           {msg && <div className={`alert-${msg.type}`} style={{ marginTop: 14 }}>{msg.text}</div>}
           {txHash && (
             <div className="tx-hash" style={{ marginTop: 12 }}>
-              ✓ TX: <a href={`https://chainscan-galileo.0g.ai/tx/${txHash}`} target="_blank" rel="noreferrer" style={{ color: "var(--teal)" }}>
+              ✓ TX: <a
+                href={`https://chainscan.0g.ai/tx/${txHash}`}
+                target="_blank"
+                rel="noreferrer"
+                style={{ color: "var(--teal)", fontFamily: "IBM Plex Mono, monospace" }}
+              >
                 {txHash.slice(0, 16)}...
               </a>
             </div>
@@ -180,11 +162,7 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
 
         {/* Complete task panel */}
         {activeTaskId && (
-          <div style={{
-            background: "#0a1e18",
-            border: "1px solid rgba(45,212,191,0.25)",
-            borderRadius: 14, padding: 20,
-          }}>
+          <div style={{ background: "#0a1e18", border: "1px solid rgba(45,212,191,0.25)", borderRadius: 14, padding: 20 }}>
             <div style={{ fontSize: 14, fontWeight: 700, color: "#e8f0fe", marginBottom: 14, fontFamily: "Syne, sans-serif" }}>
               Complete Task #{activeTaskId}
             </div>
@@ -201,54 +179,26 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
       </div>
 
       {/* Right: Task board */}
-      <div style={{
-        background: "#0d1b2e",
-        border: "1px solid #1e3a5f",
-        borderRadius: 14, padding: 24,
-      }}>
+      <div style={{ background: "#0d1b2e", border: "1px solid #1e3a5f", borderRadius: 14, padding: 24 }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }}>
           <div>
             <div style={{ fontSize: 16, fontWeight: 700, color: "#e8f0fe", fontFamily: "Syne, sans-serif" }}>Task Board</div>
-            <div style={{ fontSize: 12, color: "#6b8aad", marginTop: 3, fontFamily: "IBM Plex Mono, monospace" }}>
-              {tasks.length} total tasks
-            </div>
+            <div style={{ fontSize: 12, color: "#6b8aad", marginTop: 3, fontFamily: "IBM Plex Mono, monospace" }}>{tasks.length} total tasks</div>
           </div>
           <div style={{ display: "flex", gap: 6, alignItems: "center" }}>
             {["all", "Open", "Claimed", "Completed"].map(f => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                style={{
-                  padding: "5px 12px", borderRadius: 7, fontSize: 11, cursor: "pointer",
-                  fontFamily: "IBM Plex Mono, monospace", fontWeight: 600,
-                  border: filter === f ? "1px solid #3b82f6" : "1px solid #1e3a5f",
-                  background: filter === f ? "rgba(59,130,246,0.15)" : "transparent",
-                  color: filter === f ? "#60a5fa" : "#6b8aad",
-                  transition: "all 0.15s",
-                }}
-              >
+              <button key={f} onClick={() => setFilter(f)} style={{ padding: "5px 12px", borderRadius: 7, fontSize: 11, cursor: "pointer", fontFamily: "IBM Plex Mono, monospace", fontWeight: 600, border: filter === f ? "1px solid #3b82f6" : "1px solid #1e3a5f", background: filter === f ? "rgba(59,130,246,0.15)" : "transparent", color: filter === f ? "#60a5fa" : "#6b8aad", transition: "all 0.15s" }}>
                 {f}
               </button>
             ))}
-            <button
-              onClick={loadTasks}
-              style={{
-                padding: "5px 10px", borderRadius: 7, fontSize: 13, cursor: "pointer",
-                border: "1px solid #1e3a5f", background: "transparent", color: "#6b8aad",
-              }}
-            >↻</button>
+            <button onClick={loadTasks} style={{ padding: "5px 10px", borderRadius: 7, fontSize: 13, cursor: "pointer", border: "1px solid #1e3a5f", background: "transparent", color: "#6b8aad" }}>↻</button>
           </div>
         </div>
 
         {loadingTasks ? (
-          <div style={{ textAlign: "center", padding: 40 }}>
-            <span className="spin" style={{ width: 24, height: 24 }} />
-          </div>
+          <div style={{ textAlign: "center", padding: 40 }}><span className="spin" style={{ width: 24, height: 24 }} /></div>
         ) : filteredTasks.length === 0 ? (
-          <div style={{
-            textAlign: "center", padding: "60px 20px",
-            border: "1px dashed #1e3a5f", borderRadius: 12,
-          }}>
+          <div style={{ textAlign: "center", padding: "60px 20px", border: "1px dashed #1e3a5f", borderRadius: 12 }}>
             <div style={{ fontSize: 32, marginBottom: 12, opacity: 0.4 }}>◎</div>
             <div style={{ fontSize: 14, color: "#6b8aad", marginBottom: 6 }}>No tasks found</div>
             <div style={{ fontSize: 12, color: "#2a4060" }}>Post the first task to get started</div>
@@ -256,52 +206,24 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
             {filteredTasks.map((task, i) => (
-              <div key={i} style={{
-                background: "#091422",
-                border: "1px solid #1a3050",
-                borderRadius: 12, padding: "18px 20px",
-                transition: "border-color 0.18s",
-              }}>
+              <div key={i} style={{ background: "#091422", border: "1px solid #1a3050", borderRadius: 12, padding: "18px 20px", transition: "border-color 0.18s" }}>
                 <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 12 }}>
                   <div style={{ flex: 1, marginRight: 12 }}>
-                    <div style={{
-                      fontSize: 14, fontWeight: 700, color: "#e8f0fe",
-                      marginBottom: 5, fontFamily: "Syne, sans-serif",
-                    }}>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: "#e8f0fe", marginBottom: 5, fontFamily: "Syne, sans-serif" }}>
                       #{task.id?.toString()} {task.title}
                     </div>
                     {task.description && (
-                      <div style={{ fontSize: 12, color: "#6b8aad", lineHeight: 1.5 }} className="line-clamp-2">
-                        {task.description}
-                      </div>
+                      <div style={{ fontSize: 12, color: "#6b8aad", lineHeight: 1.5 }} className="line-clamp-2">{task.description}</div>
                     )}
                   </div>
-                  <span style={{
-                    display: "inline-flex", alignItems: "center",
-                    padding: "3px 10px", borderRadius: 6,
-                    fontSize: 10, fontWeight: 700,
-                    fontFamily: "IBM Plex Mono, monospace",
-                    letterSpacing: "0.05em",
-                    color: STATUS_COLORS[task.status],
-                    background: STATUS_BG[task.status],
-                    border: `1px solid ${STATUS_BORDER[task.status]}`,
-                    flexShrink: 0,
-                  }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", padding: "3px 10px", borderRadius: 6, fontSize: 10, fontWeight: 700, fontFamily: "IBM Plex Mono, monospace", letterSpacing: "0.05em", color: STATUS_COLORS[task.status], background: STATUS_BG[task.status], border: `1px solid ${STATUS_BORDER[task.status]}`, flexShrink: 0 }}>
                     {STATUS_LABELS[task.status]}
                   </span>
                 </div>
 
-                <div style={{
-                  display: "flex", alignItems: "center",
-                  justifyContent: "space-between",
-                  paddingTop: 12,
-                  borderTop: "1px solid #1a3050",
-                }}>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: 12, borderTop: "1px solid #1a3050" }}>
                   <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-                    <span style={{
-                      fontSize: 15, fontWeight: 800, color: "#f59e0b",
-                      fontFamily: "Syne, sans-serif",
-                    }}>
+                    <span style={{ fontSize: 15, fontWeight: 800, color: "#f59e0b", fontFamily: "Syne, sans-serif" }}>
                       {ethers.formatEther(task.reward || 0)} OG
                     </span>
                     <span style={{ fontSize: 11, color: "#4a6080", fontFamily: "IBM Plex Mono, monospace" }}>
@@ -310,19 +232,13 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
                   </div>
                   <div style={{ display: "flex", gap: 8 }}>
                     {task.status === 0 && task.poster?.toLowerCase() !== wallet?.toLowerCase() && (
-                      <button className="btn btn-teal btn-sm" onClick={() => claimTask(Number(task.id))} disabled={loading}>
-                        Claim Task
-                      </button>
+                      <button className="btn btn-teal btn-sm" onClick={() => claimTask(Number(task.id))} disabled={loading}>Claim Task</button>
                     )}
                     {task.status === 1 && task.assignee?.toLowerCase() === wallet?.toLowerCase() && (
-                      <button className="btn btn-blue btn-sm" onClick={() => setActiveTaskId(Number(task.id))}>
-                        Submit Result
-                      </button>
+                      <button className="btn btn-blue btn-sm" onClick={() => setActiveTaskId(Number(task.id))}>Submit Result</button>
                     )}
                     {task.status === 0 && task.poster?.toLowerCase() === wallet?.toLowerCase() && (
-                      <button className="btn btn-danger btn-sm" onClick={() => cancelTask(Number(task.id))} disabled={loading}>
-                        Cancel
-                      </button>
+                      <button className="btn btn-danger btn-sm" onClick={() => cancelTask(Number(task.id))} disabled={loading}>Cancel</button>
                     )}
                   </div>
                 </div>

@@ -88,6 +88,20 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
     Analyst: "var(--red)",
   };
 
+  // Reusable TX hash display
+  const TxLink = ({ hash }: { hash: string }) => (
+    <div style={{ fontSize: 11, padding: "10px 14px", background: "var(--surface)", borderRadius: 8, border: "1px solid var(--border)", fontFamily: "IBM Plex Mono, monospace" }}>
+      ✓ TX: <a
+        href={`https://chainscan.0g.ai/tx/${hash}`}
+        target="_blank"
+        rel="noreferrer"
+        style={{ color: "var(--teal)" }}
+      >
+        {hash.slice(0, 20)}...{hash.slice(-8)}
+      </a>
+    </div>
+  );
+
   if (isRegistered && agentData) {
     const repScore = Number(agentData.reputation);
     const repPercent = Math.min((repScore / 500) * 100, 100);
@@ -109,9 +123,7 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
               </div>
               <span className="badge badge-teal">{agentData.agentType}</span>
             </div>
-            <div className="rep-ring">
-              {repScore}
-            </div>
+            <div className="rep-ring">{repScore}</div>
           </div>
 
           <div style={{ marginBottom: 20 }}>
@@ -156,12 +168,7 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
           <div className="card" style={{ padding: 24 }}>
             <div className="section-title" style={{ marginBottom: 16, fontSize: 14 }}>0G Storage Metadata</div>
             <div style={{ fontSize: 11, color: "var(--grey)", marginBottom: 8, fontFamily: "IBM Plex Mono" }}>METADATA HASH</div>
-            <div style={{
-              background: "var(--surface)", border: "1px solid var(--border)",
-              borderRadius: 8, padding: "10px 14px",
-              fontFamily: "IBM Plex Mono", fontSize: 11,
-              color: "var(--teal)", wordBreak: "break-all",
-            }}>
+            <div style={{ background: "var(--surface)", border: "1px solid var(--border)", borderRadius: 8, padding: "10px 14px", fontFamily: "IBM Plex Mono", fontSize: 11, color: "var(--teal)", wordBreak: "break-all" }}>
               {agentData.metadataHash || "Not set"}
             </div>
             <div style={{ fontSize: 11, color: "var(--grey)", marginTop: 12, fontFamily: "IBM Plex Mono" }}>
@@ -176,11 +183,7 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
               { action: "Complete a task", points: "+10" },
               { action: "Owner boost", points: "+custom" },
             ].map(r => (
-              <div key={r.action} style={{
-                display: "flex", justifyContent: "space-between",
-                padding: "8px 0", borderBottom: "1px solid var(--border)",
-                fontSize: 12,
-              }}>
+              <div key={r.action} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: "1px solid var(--border)", fontSize: 12 }}>
                 <span style={{ color: "var(--grey)" }}>{r.action}</span>
                 <span style={{ color: "var(--teal)", fontFamily: "IBM Plex Mono" }}>{r.points}</span>
               </div>
@@ -210,16 +213,13 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
           </div>
 
           {msg && <div className={`alert-${msg.type}`}>{msg.text}</div>}
-          {txHash && (
-            <div style={{ fontSize: 11, padding: "10px 14px", background: "var(--surface)", borderRadius: 8, border: "1px solid var(--border)" }}>
-              ✓ TX: <a href={`https://chainscan-galileo.0g.ai/tx/${txHash}`} target="_blank" rel="noreferrer" style={{ color: "var(--teal)" }}>{txHash.slice(0, 20)}...{txHash.slice(-8)}</a>
-            </div>
-          )}
+          {txHash && <TxLink hash={txHash} />}
         </div>
       </div>
     );
   }
 
+  // Registration form
   return (
     <div style={{ maxWidth: 560, margin: "0 auto" }}>
       <div className="card card-accent" style={{ padding: 32 }}>
@@ -255,11 +255,7 @@ export default function AgentPanel({ contract, wallet, isRegistered, agentData, 
           </button>
 
           {msg && <div className={`alert-${msg.type}`}>{msg.text}</div>}
-          {txHash && (
-            <div style={{ fontSize: 11, padding: "10px 14px", background: "var(--surface)", borderRadius: 8, border: "1px solid var(--border)" }}>
-              ✓ TX: <a href={`https://chainscan-galileo.0g.ai/tx/${txHash}`} target="_blank" rel="noreferrer" style={{ color: "var(--teal)" }}>{txHash.slice(0, 20)}...{txHash.slice(-8)}</a>
-            </div>
-          )}
+          {txHash && <TxLink hash={txHash} />}
         </div>
       </div>
     </div>
