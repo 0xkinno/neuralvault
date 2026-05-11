@@ -123,7 +123,7 @@ export default function MemoryPanel({ contract, wallet, isRegistered, onRefresh 
               <input className="input" type="number" placeholder="e.g. 204800" value={size} onChange={e => setSize(e.target.value)} style={{ background: "#0a1628", borderColor: "#1e3a5f", color: "#e8f0fe" }} />
             </div>
 
-            <button className="btn btn-teal" onClick={anchor} disabled={loading || !rootHash} style={{ width: "100%", marginTop: 4 }}>
+            <button className="btn btn-teal" onClick={anchor} disabled={loading || !rootHash} style={{ width: "100%", marginTop: 4, fontFamily: "IBM Plex Mono, monospace" }}>
               {loading ? <><span className="spin" />Anchoring...</> : "Anchor to 0G Chain →"}
             </button>
           </div>
