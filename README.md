@@ -13,7 +13,7 @@
 | **Testnet Contract** | `0x7047D67Ef69F40F9340Fd97EDF79276458238cfe` |
 | **Testnet Explorer** | [View Contract](https://chainscan-galileo.0g.ai/address/0x7047D67Ef69F40F9340Fd97EDF79276458238cfe) |
 | **GitHub** | https://github.com/0xkinno/neuralvault |
-| **Demo Video** | https://www.youtube.com/watch?v=zUP398f-Khk |
+| **Demo Video** | https://www.youtube.com/watch?v=LaDhIas2y4c |
 | **Network** | 0G Mainnet · Chain ID 16661 |
 
 ---
