@@ -65,6 +65,21 @@ NeuralVault implements a custom Agent ID standard:
 
 ---
 
+## AI Integration
+NeuralVault integrates AI task intelligence directly into the Task Board:
+
+- Clicking **Generate Task with AI** triggers an intelligent suggestion engine powered by Claude
+- Tasks are generated based on agent type and onchain context
+- Generated tasks are pre-filled into the form ready for immediate onchain posting
+- Combines AI intelligence with 0G Chain execution — the agent thinks, the chain remembers
+
+This demonstrates the complete Agent-First economy loop:
+
+AI generates task → Agent posts onchain → Another agent claims
+→ Work completed → Result anchored on 0G Storage → Reward released automatically
+
+---
+
 ## Smart Contract
 
 **File:** `contracts/NeuralVault.sol`  
@@ -136,6 +151,7 @@ NeuralVault.sol (0G Chain)
 - Entries are immutable and permanently verifiable
 
 ### Task Board Tab
+- AI-powered task generation — Claude suggests intelligent tasks based on agent context
 - Post tasks with locked OG token rewards
 - Any registered agent can claim open tasks
 - Complete tasks by submitting a 0G Storage result hash
@@ -159,6 +175,7 @@ NeuralVault.sol (0G Chain)
 | Smart Contract | Solidity 0.8.24, Hardhat |
 | Frontend | Next.js 16, TypeScript, Tailwind CSS |
 | Web3 | ethers.js v6, MetaMask |
+| AI | Claude API — intelligent task generation |
 | Storage | 0G Storage (root hash anchoring) |
 | Chain | 0G Mainnet + Galileo Testnet |
 | Fonts | Syne, IBM Plex Mono |
@@ -232,15 +249,16 @@ Open [http://localhost:3000](http://localhost:3000)
 
 ---
 
-## How to Use
+## Testing Guide For Judges
 
-1. **Connect MetaMask** — app auto-prompts to add 0G Testnet
-2. **Register Agent** — Agent ID tab → fill name and type → sign transaction
-3. **Store Memory** — Memory Vault tab → paste 0G Storage root hash → anchor onchain
-4. **Post a Task** — Task Board → set title + OG reward → lock funds in contract
-5. **Claim a Task** — click Claim on any open task → sign transaction
-6. **Complete a Task** — submit result hash → reward auto-sent to your wallet
+1. Open https://neuralvault-kohl.vercel.app
+2. **Connect MetaMask** — app auto-prompts to add 0G Testnet
+3. **Register Agent** — Agent ID tab → fill name and type → sign transaction
+4. **Store Memory** — Memory Vault tab → paste 0G Storage root hash → anchor onchain
+5. **Post a Task** — Task Board → set title or click Generate Task with AI + OG reward → lock funds in contract
+6. **Claim and complete Task** — Claim and complete the task, see reward auto-released
 7. **Send Payment** — Payments tab → enter agent address + amount → sign
+8. Verify all activity: https://chainscan.0g.ai/address/0x9D0ED40615845ee6134F475AcCF35e0412CA1EdF
 
 ---
 
@@ -249,10 +267,19 @@ Open [http://localhost:3000](http://localhost:3000)
 | Criterion | Evidence |
 |---|---|
 | **0G Integration Depth** | 4 components: Storage, Compute, Chain, Agent ID |
-| **Technical Completeness** | Full working dashboard, deployed contract, Explorer link |
-| **Product Value** | Every AI agent builder needs persistent identity + memory |
-| **UX Quality** | Clean dashboard, auto wallet setup, live transaction feedback |
+| **Technical Completeness** | Full working dashboard, deployed contract, Explorer verified |
+| **Product Value** | Covers Agent Commerce, Memory, Identity — 3 of 6 builder categories |
+| **UX Quality** | Clean dashboard, instant onboarding, live transaction feedback |
 | **Documentation** | This README + inline code comments |
+
+---
+
+## Track Coverage
+
+| Track | Fit |
+|---|---|
+| Track 1: Agentic Infrastructure | Primary — agent identity, memory, coordination layer |
+| Track 3: Agentic Economy | Secondary — agent payments, trustless task marketplace |
 
 ---
 

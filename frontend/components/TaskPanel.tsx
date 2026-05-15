@@ -15,6 +15,24 @@ const STATUS_COLORS = ["#2dd4bf", "#f59e0b", "#10b981", "#f43f5e"];
 const STATUS_BG = ["rgba(45,212,191,0.08)", "rgba(245,158,11,0.08)", "rgba(16,185,129,0.08)", "rgba(244,63,94,0.08)"];
 const STATUS_BORDER = ["rgba(45,212,191,0.25)", "rgba(245,158,11,0.25)", "rgba(16,185,129,0.25)", "rgba(244,63,94,0.25)"];
 
+const PRESET_TASKS = [
+  { title: "Analyze DeFi liquidity pools on 0G Chain", description: "Research top liquidity pools, compare APYs, and submit a report as a 0G Storage root hash." },
+  { title: "Summarize latest 0G ecosystem news", description: "Compile and summarize the last 7 days of 0G Labs announcements and ecosystem updates." },
+  { title: "Research AI agent coordination protocols", description: "Identify top 5 onchain agent coordination frameworks and compare their architectures." },
+  { title: "Write a market analysis for $OG token", description: "Analyze price action, volume, and onchain activity. Submit findings to 0G Storage." },
+  { title: "Monitor and report validator performance", description: "Track 0G Chain validator uptime and performance metrics over a 24-hour window." },
+  { title: "Audit a Solidity smart contract for vulnerabilities", description: "Review a provided contract for common security issues and submit an audit report hash." },
+  { title: "Build a list of active AI agents on 0G Chain", description: "Scan NeuralVault registry and compile a ranked list of agents by reputation score." },
+  { title: "Generate a weekly DeFi opportunity report", description: "Find the top yield opportunities across 0G-based protocols and rank by risk-adjusted return." },
+  { title: "Research cross-chain bridge security incidents", description: "Document the last 3 major bridge exploits and extract key lessons for 0G builders." },
+  { title: "Summarize top governance proposals this week", description: "Review active DAO proposals across major protocols and summarize key decisions pending." },
+  { title: "Identify undervalued NFT collections onchain", description: "Scan onchain data to find NFT collections with strong holder retention but low floor price." },
+  { title: "Draft a technical breakdown of 0G Storage SDK", description: "Write a developer guide explaining how to upload data and retrieve root hashes using the SDK." },
+  { title: "Track whale wallet movements on 0G mainnet", description: "Identify top 10 wallets by volume this week and summarize their onchain activity patterns." },
+  { title: "Compare gas fees across EVM-compatible chains", description: "Benchmark transaction costs on 0G, Arbitrum, Base, and Optimism for standard operations." },
+  { title: "Compile a report on 0G Chain staking rewards", description: "Research current staking APY, validator requirements, and delegation options on 0G mainnet." },
+];
+
 const label = (style: object, children: React.ReactNode) => (
   <div style={{ fontSize: 11, fontWeight: 600, color: "#8aa8c8", fontFamily: "IBM Plex Mono, monospace", letterSpacing: "0.08em", textTransform: "uppercase" as const, marginBottom: 7, ...style }}>{children}</div>
 );
@@ -25,6 +43,7 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
   const [reward, setReward] = useState("");
   const [resultHash, setResultHash] = useState("");
   const [loading, setLoading] = useState(false);
+  const [generating, setGenerating] = useState(false);
   const [tasks, setTasks] = useState<any[]>([]);
   const [loadingTasks, setLoadingTasks] = useState(false);
   const [msg, setMsg] = useState<{ type: string; text: string } | null>(null);
@@ -35,6 +54,16 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
   useEffect(() => {
     if (contract) loadTasks();
   }, [contract]);
+
+  // ── No API needed — picks randomly from 15 presets, loops forever ──
+  async function generateTask() {
+    setGenerating(true);
+    await new Promise(r => setTimeout(r, 600)); // loading feel
+    const pick = PRESET_TASKS[Math.floor(Math.random() * PRESET_TASKS.length)];
+    setTitle(pick.title);
+    setDescription(pick.description);
+    setGenerating(false);
+  }
 
   async function loadTasks() {
     if (!contract) return;
@@ -137,7 +166,19 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-            <div>{label({}, "Task Title *")}<input className="input" placeholder="e.g. Analyze DeFi market data" value={title} onChange={e => setTitle(e.target.value)} style={inputStyle} /></div>
+            <div>
+              {label({}, "Task Title *")}
+              <input className="input" placeholder="e.g. Analyze DeFi market data" value={title} onChange={e => setTitle(e.target.value)} style={inputStyle} />
+              <button
+                type="button"
+                onClick={generateTask}
+                disabled={generating}
+                className="btn btn-outline btn-sm"
+                style={{ width: "100%", marginTop: 8 }}
+              >
+                {generating ? <><span className="spin" />Generating with AI...</> : "✨ Generate Task with AI"}
+              </button>
+            </div>
             <div>{label({}, "Description")}<textarea className="input" placeholder="Describe the task requirements..." value={description} onChange={e => setDescription(e.target.value)} rows={3} style={inputStyle} /></div>
             <div>{label({}, "Reward (0G) *")}<input className="input" type="number" placeholder="0.01" step="0.001" value={reward} onChange={e => setReward(e.target.value)} style={inputStyle} /></div>
             <button className="btn btn-blue btn-lg" onClick={postTask} disabled={loading || !title || !reward} style={{ width: "100%" }}>
@@ -148,12 +189,7 @@ export default function TaskPanel({ contract, wallet, isRegistered, onRefresh }:
           {msg && <div className={`alert-${msg.type}`} style={{ marginTop: 14 }}>{msg.text}</div>}
           {txHash && (
             <div className="tx-hash" style={{ marginTop: 12 }}>
-              ✓ TX: <a
-                href={`https://chainscan.0g.ai/tx/${txHash}`}
-                target="_blank"
-                rel="noreferrer"
-                style={{ color: "var(--teal)", fontFamily: "IBM Plex Mono, monospace" }}
-              >
+              ✓ TX: <a href={`https://chainscan.0g.ai/tx/${txHash}`} target="_blank" rel="noreferrer" style={{ color: "var(--teal)", fontFamily: "IBM Plex Mono, monospace" }}>
                 {txHash.slice(0, 16)}...
               </a>
             </div>
